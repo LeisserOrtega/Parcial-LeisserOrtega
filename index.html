@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/2Logo_Resultados.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/b946b4c9ec.js" crossorigin="anonymous"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>CENSO 2018</title>
+</head>
+<body>
+  <main >
+    <header>
+        <img src="images/2Logo_Resultados.png"/>
+        <h2 class="logo-tse">
+        </h2>
+        <input type="checkbox" id="check">
+        <label for="check" class="mostrar-menu">
+            &#8801 
+        </label>
+        <nav class="menu">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#tipoEleccion" data-whatever="@mdo">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Tipo de Elección
+            </button>
+            <!-- <a href="#"><i class="fa-solid fa-magnifying-glass"></i>Tipo de Elección</a> -->
+
+        </nav>
+    </header>
+    <section id="banner">
+        <div class="contenido-banner">
+            <h1><span>PORTAL DE RESULTADOS DEL CENSO 2018</h1>
+            <!-- <a href="#" class="boton-empezar">Empezar</a> -->
+ 
+
+            
+        </div>
+        
+    </section>
+    
+    <!-- MODAL -->
+    <div >
+        <h1 class="titulo">Resultados Departamento de El Progreso</h1>
+        <div class="info-mesas">
+
+        </div>
+        <div class="modal fade" id="tipoEleccion" tabindex="-1" role="dialog" aria-labelledby="tipoEleccion" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Filtrar Resultados</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Seleccion un departamento:</label>
+                        <select class="form-control" id="tipoConsultaDepartamento" name="tipoConsultaDepartamento" >
+                          <option  value="999">DEPARTAMENTO EL PROGRESO</option>
+                          <option  value="201"> 201 Guastatoya</option>
+                          <option  value="202"> 202 Morazán</option>
+                          <option  value="203"> 203 San Agustín Acasaguastlán</option>
+                          <option  value="204"> 204 San Cristóbal Acasaguastlán</option>
+                          <option  value="205"> 205 El Jícaro</option>
+                          <option  value="206"> 206 Sansare</option>
+                          <option  value="207"> 207 Sanarate</option>
+                          <option  value="208"> 208 San Antonio la Paz</option>\
+                        </select>
+                        <!-- <input type="" class="form-control" id="recipient-name"> -->
+                    </div>
+                  
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="obtieneInfo()">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <div class="container">
+      <div class="header-consulta">
+
+      </div>
+    </div>
+
+      <div class="container">
+        <div class="page">
+            <div>
+
+                <div class="info-mesas">
+
+                </div>
+                    <div class="container">
+                      <canvas id="myChart" width="400" height="100"></canvas>
+                     </div>
+                   <!--   <div class="grafica-pie">
+                        <canvas id="myChart2" width="400px" height="400px"></canvas>
+                    </div> -->
+            </div>
+
+
+            <div class="tablas">
+              <div>
+                <table class="table table-striped table-sm">
+                  <thead class="thead-dark">
+                  <tr>
+                      <th scope="col">Viviendas y Hogares</th>
+                      <!-- <th scope="col">Votos</th>
+                      <th scope="col">Porcentaje(%)</th> -->
+                  </tr>
+                  </thead>
+                  <tbody id="contenidoviviendas">
+  
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <table class="table table-striped table-sm">
+                  <thead class="thead-dark">
+                  <tr>
+                      <th scope="col">Personas</th>
+                      <!-- <th scope="col">Votos</th>
+                      <th scope="col">Porcentaje(%)</th> -->
+                  </tr>
+                  </thead>
+                  <tbody id="contenidopersonas">
+
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <table class="table table-striped table-sm">
+                  <thead class="thead-dark">
+                  <tr>
+                      <th scope="col">Población por sexo</th>
+                      <!-- <th scope="col">Votos</th>
+                      <th scope="col">Porcentaje(%)</th> -->
+                  </tr>
+                  </thead>
+                  <tbody id="contenidopobsexo">
+  
+                  </tbody>
+                </table>
+              </div>
+              
+              <div>
+                <table class="table table-striped table-sm">
+                  <thead class="thead-dark">
+                  <tr>
+                      <th scope="col">Poblacion por grandes de edad</th>
+                      <!-- <th scope="col">Votos</th>
+                      <th scope="col">Porcentaje(%)</th> -->
+                  </tr>
+                  </thead>
+                  <tbody id="contenidopobporedad">
+  
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <table class="table table-striped table-sm">
+                  <thead class="thead-dark">
+                  <tr>
+                      <th scope="col">Poblacion por área</th>
+                      <!-- <th scope="col">Votos</th>
+                      <th scope="col">Porcentaje(%)</th> -->
+                  </tr>
+                  </thead>
+                  <tbody id="contenidopobporarea">
+  
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <table class="table table-striped table-sm">
+                  <thead class="thead-dark">
+                  <tr>
+                      <th scope="col">Población por pueblos</th>
+                      <!-- <th scope="col">Votos</th>
+                      <th scope="col">Porcentaje(%)</th> -->
+                  </tr>
+                  </thead>
+                  <tbody id="contenidopobporpueblo">
+  
+                  </tbody>
+                </table>
+              </div>
+              
+             
+
+            </div>
+                 
+            
+  
+
+        </div>
+      </div>
+
+ 
+      <!-- Error Message -->
+      
+
+    <footer>
+        <p>&copy;LagBB Industries</p>
+    </footer>
+  </main>
+<script src="main.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
